@@ -1,3 +1,9 @@
+/* 1. Encapsulation is only permitting managed entry through public methods. It is also the practice of keeping data private.
+   2. Null can be used to represent nothing. This can be used for something like Subaru p = null;. The exception for this would be in reference to methods as null will caused a error.
+   3. A compjosition is a way to design classes that invlove putting other classes together; while inheritance is a way of deesigning classes that involves using a logical hierarchy
+
+
+*/
 import java.util.Arrays;
 
 abstract class Automobile implements Comparable<Automobile> {
