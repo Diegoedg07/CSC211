@@ -1,0 +1,74 @@
+import java.util.Arrays;
+
+abstract class Automobile implements Comparable<Automobile> {
+    protected int modelYear;
+    protected String brand;
+
+    public Automobile(int modelYear, String brand) {
+        this.modelYear = modelYear;
+        this.brand = brand;
+    }
+
+    public void honk() {
+        System.out.println(brand + " honks: Beep Beep!");
+    }
+
+    public abstract void accelerate();
+    public abstract void stop();
+    public abstract void reverse();
+
+    @Override
+    public int compareTo(Automobile other) {
+        return Integer.compare(this.modelYear, other.modelYear);
+    }
+
+    @Override
+    public String toString() {
+        return brand + " (" + modelYear + ")";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Automobile that = (Automobile) obj;
+        return modelYear == that.modelYear && brand.equals(that.brand);
+    }
+}
+
+class Car extends Automobile {
+    public Car(int modelYear, String brand) { super(modelYear, brand); }
+    public void accelerate() { System.out.println(brand + " is accelerating."); }
+    public void stop() { System.out.println(brand + " is stopping."); }
+    public void reverse() { System.out.println(brand + " is reversing."); }
+}
+
+class SportsCar extends Automobile {
+    public SportsCar(int modelYear, String brand) { super(modelYear, brand); }
+    public void accelerate() { System.out.println(brand + " zooms ahead!"); }
+    public void stop() { System.out.println(brand + " stops quickly."); }
+    public void reverse() { System.out.println(brand + " is reversing carefully."); }
+}
+
+class JunkCar extends Automobile {
+    public JunkCar(int modelYear, String brand) { super(modelYear, brand); }
+    public void accelerate() { System.out.println(brand + " struggles to accelerate..."); }
+    public void stop() { System.out.println(brand + " stops with a screech!"); }
+    public void reverse() { System.out.println(brand + " barely reverses."); }
+}
+
+public class Tester {
+    public static void main(String[] args) {
+        Automobile[] vehicles = {
+            new Car(2020, "Toyota"), new SportsCar(2022, "Ferrari"), new JunkCar(1995, "Old Chevy")
+        };
+        Arrays.stream(vehicles).forEach(vehicle -> {
+            System.out.println(vehicle);
+            vehicle.honk(); vehicle.accelerate(); vehicle.stop(); vehicle.reverse();
+            System.out.println();
+        });
+        Arrays.sort(vehicles);
+        System.out.println("Sorted Automobiles by model year:");
+        Arrays.stream(vehicles).forEach(System.out::println);
+    }
+}
