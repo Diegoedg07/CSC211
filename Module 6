@@ -1,0 +1,59 @@
+Java Awt is called platform dependent because it relies on the operating systems user interface. Since it used the systems window toolkit the way awt looks and acts can be different depending on the platform.
+Java running on a virtual machine because the .java file is converted into an intermediate format called bytecode; which is stored in .class files. This bytecode is platform independent which would mean that its not tied to any hardware and can be used by any java virtual machine. The JVM (Java Virtual Machine) is responsible for translating bytecode into machine code that the device can understand and execute. This takes the universal byte code and translates and adopts it into the OS. This is beneficial because it can be used anywhere
+Object is at the top because it is the parent class. Every class is directly or indirectly inherited from Object. 
+A java package is a bundle of related files that can be used in our program.
+A java event is an action within the program. This could be AWT event which would be pressing a button. These events are used for creating interactive GUIs.
+
+
+
+import java.awt.*;
+import java.awt.event.*;
+
+class EmployeeForm extends Frame implements ActionListener {
+    TextField nameField, idField, deptField;
+    Label resultLabel;
+
+    EmployeeForm() {
+        setTitle("Employee Information Form");
+        setSize(400, 300);
+        setLayout(new FlowLayout());
+
+        add(new Label("Name:"));
+        nameField = new TextField(20);
+        add(nameField);
+
+        add(new Label("Employee ID:"));
+        idField = new TextField(20);
+        add(idField);
+
+        add(new Label("Department:"));
+        deptField = new TextField(20);
+        add(deptField);
+
+        Button submitButton = new Button("Submit");
+        submitButton.addActionListener(this);
+        add(submitButton);
+
+        resultLabel = new Label("");
+        add(resultLabel);
+
+        setVisible(true);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                dispose();
+            }
+        });
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String name = nameField.getText();
+        String id = idField.getText();
+        String dept = deptField.getText();
+        resultLabel.setText("Submitted: " + name + ", " + id + ", " + dept);
+    }
+
+    public static void main(String[] args) {
+        new EmployeeForm();
+    }
+}
+
