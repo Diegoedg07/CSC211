@@ -1,0 +1,98 @@
+Lambdas and Streams
+
+Allow you to write powerful code in a concise way 
+Are commonly used since Java 8
+
+package com.example;
+
+public class Main {
+
+     public static void main(String[]) args) {
+
+	Greeting greeting = new HelloGreeting();
+	greeting.sayHello();
+
+     Greeting greeting2 = new Greeting() {
+	@Override
+	public void sayHello() {
+	     System.out.println(“Hello World”);
+	     }
+	};
+	greeting2.sayingHello();
+	Greeting greeting3 = () -> System.out.println(“Hello World”);
+	greeting3.sayHello();
+
+	Calculator calculator = (int x, int y) -> {
+	     Random random = new Random();
+	     Int randomNumber = random.nextInt (bound: 50);
+	     return x * y + randomNumber;
+	};
+	System.out.println(calculator.calculate( x:1, y:2));
+	// System.out.println(calculator.applyAsInt( left: 1, right: 2));
+
+     }
+}
+
+
+–
+
+Steams
+ Used together with lambdas, steams allow you to write concise, powerful code
+Are commonly used since Java 8
+
+List of Countries
+Capitalize everything
+Filter out countries beginning with “C”
+Sort countries in alphabetical order
+Print result to console
+
+For (String country : countries) {
+      country = country.toUpperCase();
+      if(!country.startsWith(“C”) {
+            System.out.println(country);
+      }
+}
+
+
+Collections.sort(countries);
+for(String country : countries) {
+      country = country.toUpperCase();
+      if(!country.startsWith(“C”) {
+	System.out.println(country);
+      }
+}
+
+
+countries.stream()
+.map(s -> s.toUpperCase())
+.filter(s -> !s.startsWith(“C”))
+.sorted()
+.forEach(s -> System.out.println(s));
+
+–
+
+package com.example;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class Main {
+
+      public static void main(String[] args) {
+
+	Integer[] scores = new Integer[] {80, 66, 73, 92, 43};
+	Steam<Integer> scoresStream = Array.stream(scores);
+
+	List<String> shoppingList = new ArrayList<>();
+shoppingList.add(“coffee”)
+shoppingList.add(“bread”)
+shoppingList.add(“pineapple”)
+shoppingList.add(“milk”)
+shoppingList.add(“pasta”)
+Steam<Integer> shoppingListStream = shoppingList.stream();
+shoppingListStream.sorted().forEach(iterm -> System.out.println(item));
+
+Stream<String> lettersStream = Stream.of(“a”, “b”, “c”);
+
